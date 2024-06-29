@@ -7,8 +7,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include <openssl/ssl.h>
-#include <openssl/err.h>
 
 #define error(msg) {perror(msg);printf("\n");exit(1);}
 

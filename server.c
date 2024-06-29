@@ -188,7 +188,7 @@ int main(int argc, char **argv) {
         SSL_set_fd(ssl, newfd);
 
         if (SSL_accept(ssl) <= 0) {
-            printf("ssl accept error! \n")
+            printf("ssl accept error! \n");
             ERR_print_errors_fp(stderr);
             SSL_free(ssl);
             close(newfd);

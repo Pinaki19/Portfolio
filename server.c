@@ -128,44 +128,31 @@ void getpath(char * buffer,char* file_path,char *content_type){
 	}
 	
 }
-
-int main(int argc, char **argv)
-{
-    if (argc < 4)
-    {
-        printf("Usage: %s <port> <server.crt content> <server.key content>\n", argv[0]);
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        printf("Provide port number!\n");
         exit(1);
     }
-
-    const char *crt_content = argv[2];
-    const char *key_content = argv[3];
-
-    // Write certificate and key to temporary files
-    const char *crt_filename = "/tmp/server.crt";
-    const char *key_filename = "/tmp/server.key";
-    write_to_temp_file(crt_content, crt_filename);
-    write_to_temp_file(key_content, key_filename);
 
     SSL_library_init();
     SSL_load_error_strings();
     OpenSSL_add_all_algorithms();
 
     SSL_CTX *ctx = SSL_CTX_new(TLS_server_method());
-    if (!ctx)
-    {
+    if (!ctx) {
         ERR_print_errors_fp(stderr);
         exit(1);
     }
 
     // Load server certificate and private key
-    if (SSL_CTX_use_certificate_file(ctx, crt_filename, SSL_FILETYPE_PEM) <= 0 ||
-        SSL_CTX_use_PrivateKey_file(ctx, key_filename, SSL_FILETYPE_PEM) <= 0 ||
-        !SSL_CTX_check_private_key(ctx))
-    {
+    if (SSL_CTX_use_certificate_file(ctx, "server.crt", SSL_FILETYPE_PEM) <= 0 ||
+        SSL_CTX_use_PrivateKey_file(ctx, "server.key", SSL_FILETYPE_PEM) <= 0 ||
+        !SSL_CTX_check_private_key(ctx)) {
         ERR_print_errors_fp(stderr);
         SSL_CTX_free(ctx);
         exit(1);
     }
+
     struct sockaddr_in server, client;
     server.sin_family = AF_INET;
     server.sin_port = htons(atoi(argv[1]));

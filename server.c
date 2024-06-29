@@ -143,7 +143,7 @@ int main(int argc, char **argv) {
         ERR_print_errors_fp(stderr);
         exit(1);
     }
-
+    SSL_CTX_set_min_proto_version(ctx, TLS1_2_VERSION); // Example for TLS 1.2
     // Load server certificate and private key
     if (SSL_CTX_use_certificate_file(ctx, "/etc/secrets/server.crt", SSL_FILETYPE_PEM) <= 0 ||
         SSL_CTX_use_PrivateKey_file(ctx, "/etc/secrets/server.key", SSL_FILETYPE_PEM) <= 0 ||
@@ -153,6 +153,7 @@ int main(int argc, char **argv) {
         SSL_CTX_free(ctx);
         exit(1);
     }
+    
 
     struct sockaddr_in server, client;
     server.sin_family = AF_INET;
@@ -187,6 +188,7 @@ int main(int argc, char **argv) {
         SSL_set_fd(ssl, newfd);
 
         if (SSL_accept(ssl) <= 0) {
+            printf("ssl accept error! \n")
             ERR_print_errors_fp(stderr);
             SSL_free(ssl);
             close(newfd);

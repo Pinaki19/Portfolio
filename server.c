@@ -145,9 +145,10 @@ int main(int argc, char **argv) {
     }
 
     // Load server certificate and private key
-    if (SSL_CTX_use_certificate_file(ctx, "server.crt", SSL_FILETYPE_PEM) <= 0 ||
-        SSL_CTX_use_PrivateKey_file(ctx, "server.key", SSL_FILETYPE_PEM) <= 0 ||
-        !SSL_CTX_check_private_key(ctx)) {
+    if (SSL_CTX_use_certificate_file(ctx, "/etc/secrets/server.crt", SSL_FILETYPE_PEM) <= 0 ||
+        SSL_CTX_use_PrivateKey_file(ctx, "/etc/secrets/server.key", SSL_FILETYPE_PEM) <= 0 ||
+        !SSL_CTX_check_private_key(ctx))
+    {
         ERR_print_errors_fp(stderr);
         SSL_CTX_free(ctx);
         exit(1);

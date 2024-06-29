@@ -143,7 +143,7 @@ int main(int argc, char **argv) {
         ERR_print_errors_fp(stderr);
         exit(1);
     }
-    SSL_CTX_set_min_proto_version(ctx, TLS1_2_VERSION); // Example for TLS 1.2
+    SSL_CTX_set_min_version(ctx, TLS1_2_VERSION);
     // Load server certificate and private key
     if (SSL_CTX_use_certificate_file(ctx, "/etc/secrets/server.crt", SSL_FILETYPE_PEM) <= 0 ||
         SSL_CTX_use_PrivateKey_file(ctx, "/etc/secrets/server.key", SSL_FILETYPE_PEM) <= 0 ||

@@ -10,6 +10,7 @@ function setThemeFromCookie() {
 	// Check if the cookie is set 
 	if (typeof Cookies.get('mode') !== "undefined" ) {
 		documentBody.classList.add('light-mode');
+	
 		modeToggler.checked = true; // toggle change
 		
 		console.log('Cookie: light mode' );

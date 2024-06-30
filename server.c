@@ -140,6 +140,7 @@ int main(int argc, char **argv) {
 
     SSL_CTX *ctx = SSL_CTX_new(TLS_server_method());
     if (!ctx) {
+        printf("NO ctx");
         ERR_print_errors_fp(stderr);
         exit(1);
     }
@@ -149,6 +150,7 @@ int main(int argc, char **argv) {
         SSL_CTX_use_PrivateKey_file(ctx, "/etc/secrets/server.key", SSL_FILETYPE_PEM) <= 0 ||
         !SSL_CTX_check_private_key(ctx))
     {
+        printf("Unable to verify");
         ERR_print_errors_fp(stderr);
         SSL_CTX_free(ctx);
         exit(1);
@@ -180,7 +182,7 @@ int main(int argc, char **argv) {
         bzero(buffer, sizeof(buffer));
         int newfd = accept(sockfd, (struct sockaddr*)&client, &len);
         if (newfd < 0) {
-            perror("accept");
+            perror("accept fail");
             continue;
         }
 

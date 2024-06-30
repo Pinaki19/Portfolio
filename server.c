@@ -7,8 +7,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include <openssl/ssl.h>
-#include <openssl/err.h>
 
 #define error(msg) {perror(msg);printf("\n");exit(1);}
 
@@ -122,9 +120,7 @@ void getpath(char * buffer,char* file_path,char *content_type){
 		set_content_type(file_path,content_type);
 	
 	}else{
-		
 		printf("Data received: %s\n",data);
-	
 	}
 	
 }
@@ -134,29 +130,7 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
-    SSL_library_init();
-    SSL_load_error_strings();
-    OpenSSL_add_all_algorithms();
-
-    SSL_CTX *ctx = SSL_CTX_new(TLS_server_method());
-    if (!ctx) {
-        printf("NO ctx");
-        ERR_print_errors_fp(stderr);
-        exit(1);
-    }
-    
-    // Load server certificate and private key
-    if (SSL_CTX_use_certificate_file(ctx, "/etc/secrets/server.crt", SSL_FILETYPE_PEM) <= 0 ||
-        SSL_CTX_use_PrivateKey_file(ctx, "/etc/secrets/server.key", SSL_FILETYPE_PEM) <= 0 ||
-        !SSL_CTX_check_private_key(ctx))
-    {
-        printf("Unable to verify");
-        ERR_print_errors_fp(stderr);
-        SSL_CTX_free(ctx);
-        exit(1);
-    }
-    
-
+   
     struct sockaddr_in server, client;
     server.sin_family = AF_INET;
     server.sin_port = htons(atoi(argv[1]));
@@ -186,43 +160,28 @@ int main(int argc, char **argv) {
             continue;
         }
 
-        SSL *ssl = SSL_new(ctx);
-        SSL_set_fd(ssl, newfd);
-
-        if (SSL_accept(ssl) <= 0) {
-            printf("ssl accept error! \n");
-            ERR_print_errors_fp(stderr);
-            SSL_free(ssl);
-            close(newfd);
-            continue;
-        }
-
         printf("Accepted connection...\n");
         fflush(stdout);
-        SSL_read(ssl, buffer, sizeof(buffer));
+        read(newfd, buffer, sizeof(buffer));
         getpath(buffer, file, content_type);
 
         bzero(buffer, sizeof(buffer));
         fs = fopen(file, "r");
         int readBytes = 0;
         if (fs) {
-            SSL_write(ssl, ok_headers, strlen(ok_headers));
-            SSL_write(ssl, content_type, strlen(content_type));
+            write(newfd, ok_headers, strlen(ok_headers));
+            write(newfd, content_type, strlen(content_type));
             while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0) {
-                SSL_write(ssl, buffer, readBytes);
+                write(newfd, buffer, readBytes);
             }
             fclose(fs);
         } else {
-            SSL_write(ssl, error_message, strlen(error_message));
+            write(newfd, error_message, strlen(error_message));
         }
 
-        SSL_shutdown(ssl);
-        SSL_free(ssl);
         close(newfd);
     }
 
     close(sockfd);
-    SSL_CTX_free(ctx);
-    EVP_cleanup();
     return 0;
 }

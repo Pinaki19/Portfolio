@@ -163,6 +163,7 @@ int main(int argc, char **argv) {
         printf("Accepted connection...\n");
         fflush(stdout);
         read(newfd, buffer, sizeof(buffer));
+        printf("Data received: %s\n",buffer);
         getpath(buffer, file, content_type);
 
         bzero(buffer, sizeof(buffer));

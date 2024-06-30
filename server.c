@@ -58,13 +58,14 @@ bool image(const char* ext){
 	return false;
 }
 
-void set_content_type(const char* file_path,char* content_type){
+int set_content_type(char* file_path,char* content_type){
 	char ext[64]={0};
 	char file_path_temp[512]={0};
 	strcpy(file_path_temp,file_path);
 	char file_name[128]={0};
 	
 	char* name=strtok(file_path_temp,"/");
+    if(!name) return 0;
 	while(name){
 		strcpy(file_name,name);
 		name=strtok(NULL,"/");
@@ -73,10 +74,9 @@ void set_content_type(const char* file_path,char* content_type){
 	int len=strlen(file_name);
 	char* extension=strtok(file_name,".");
 	if(strlen(extension)==len){
-        strcpy(&file_name[len],".html");
+        strcpy(&file_path[strlen(file_path)],".html");
         strcpy(ext, "html");
     }
-	
 	else{
 		while(extension){
 			strcpy(ext,extension);
@@ -93,6 +93,7 @@ void set_content_type(const char* file_path,char* content_type){
 	else
 		strcpy(content_type,"image/");
 	strcpy(&content_type[strlen(content_type)],ext);
+    return 1;
 }
 
 int getpath(char * buffer,char* file_path,char *content_type){
@@ -114,13 +115,14 @@ int getpath(char * buffer,char* file_path,char *content_type){
 	printf("\nRequest path: %s\n",req_path);
 	
 	if(strcmp(req_type,"GET")==0){
+        if(req_path[0]=='.') return 0;
 		if(strcmp(req_path,"/")==0){
 			strcpy(file_path,"index.html");
 		}
 		else{
 			strcpy(file_path,&req_path[1]);
 		}
-		set_content_type(file_path,content_type);
+		if(!set_content_type(file_path,content_type)) return 0;
 	
 	}else{
 		printf("Data received: %s\n",data);

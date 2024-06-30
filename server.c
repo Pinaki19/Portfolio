@@ -10,23 +10,8 @@
 
 #define error(msg) {perror(msg);printf("\n");exit(1);}
 
-const char* error_message = "HTTP/1.1 404 Not Found\nContent-Type: text/html\n\n\
-        <!DOCTYPE html>\
-        <html lang='en'>\
-        <head>\
-            <meta charset='UTF-8'>\
-            <meta http-equiv='X-UA-Compatible' content='IE=edge'>\
-            <meta name='viewport' content='width=device-width, initial-scale=1.0'>\
-            <title>Error</title>\
-        </head>\
-        <body>\
-            <div>\
-                <h2>The Requested URL was not found!</h2>\
-            </div>\
-        </body>\
-        </html>";
-
-
+const char* error_headers = "HTTP/1.1 404 Not Found\nContent-Type: text/html\n\n";
+const char *ok_headers = "HTTP/1.1 200 OK\nContent-Type: ";
 
 #define READ_SIZE 256000
 
@@ -127,7 +112,6 @@ int getpath(char * buffer,char* file_path,char *content_type){
 	}else{
 		printf("Data received: %s\n",data);
 	}
-	
     return 1;
 }
 int main(int argc, char **argv) {
@@ -152,8 +136,6 @@ int main(int argc, char **argv) {
     if(res<0)
     	error("Bind fail!");
     listen(sockfd, 10);
-
-    char* ok_headers = "HTTP/1.1 200 OK\nContent-Type: ";
     FILE* fs;
     socklen_t len = sizeof(client);
     char buffer[READ_SIZE], file[1024];
@@ -169,21 +151,26 @@ int main(int argc, char **argv) {
         if(strlen(buffer)==0) continue;
         printf("Data received: %s\n",buffer);
         int result=getpath(buffer, file, content_type);
-        if(!result) continue;
+        if(!result && strcmp(content_type,"text/html/n/n")!=0) continue;
         bzero(buffer, sizeof(buffer));
         fs = fopen(file, "r");
         int readBytes = 0;
-        if (fs) {
+        if(result && fs){
             write(newfd, ok_headers, strlen(ok_headers));
             write(newfd, content_type, strlen(content_type));
-            while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0) {
+            while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0)
+            {
                 write(newfd, buffer, readBytes);
             }
-            fclose(fs);
-        } else {
-            write(newfd, error_message, strlen(error_message));
+        }else{
+            write(newfd, error_headers, strlen(error_headers));
+            fs=fopen("error.html","r");
+            while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0)
+            {
+                write(newfd, buffer, readBytes);
+            }
         }
-
+        fclose(fs);
         close(newfd);
     }
 

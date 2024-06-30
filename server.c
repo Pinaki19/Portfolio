@@ -101,7 +101,14 @@ int getpath(char * buffer,char* file_path,char *content_type){
 	
 	if(strcmp(req_type,"GET")==0){
         if(req_path[0]=='.') return 0;
-		if(strcmp(req_path,"/")==0){
+
+        char *result = strstr(req_path, "error.css");
+        if (result != NULL){
+            strcpy(file_path, "error.css");
+            strcpy(content_type,"text/css/n/n");
+            return 1;
+        }
+        if(strcmp(req_path,"/")==0){
 			strcpy(file_path,"index.html");
 		}
 		else{

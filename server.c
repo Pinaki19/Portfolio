@@ -92,7 +92,7 @@ void set_content_type(const char* file_path,char* content_type){
 	strcpy(&content_type[strlen(content_type)],ext);
 }
 
-void getpath(char * buffer,char* file_path,char *content_type){
+int getpath(char * buffer,char* file_path,char *content_type){
 	bzero(file_path,sizeof(file_path));
 	bzero(content_type,sizeof(content_type));
 	char * headers=strtok(buffer,"{");
@@ -102,9 +102,9 @@ void getpath(char * buffer,char* file_path,char *content_type){
 	char * delim=" ";
 	char* req_type=strtok(headers,delim);
 	char *req_path=strtok(NULL,delim);
-	if(!headers || !req_type || !req_path){
+	if(!headers || !req_type || !req_path || req_path[0]=='.'){
 		strcpy(file_path,"NONE");
-		return;
+		return 0;
 	}
 	if(strlen(req_path)>1 && req_path[strlen(req_path)-1]=='/')
 		req_path[strlen(req_path)-1]='\0';
@@ -123,6 +123,7 @@ void getpath(char * buffer,char* file_path,char *content_type){
 		printf("Data received: %s\n",data);
 	}
 	
+    return 1;
 }
 int main(int argc, char **argv) {
     if (argc < 2) {
@@ -159,13 +160,11 @@ int main(int argc, char **argv) {
             perror("accept fail");
             continue;
         }
-
-        printf("Accepted connection...\n");
-        fflush(stdout);
         read(newfd, buffer, sizeof(buffer));
+        if(strlen(buffer)==0) continue;
         printf("Data received: %s\n",buffer);
-        getpath(buffer, file, content_type);
-
+        int result=getpath(buffer, file, content_type);
+        if(!result) continue;
         bzero(buffer, sizeof(buffer));
         fs = fopen(file, "r");
         int readBytes = 0;

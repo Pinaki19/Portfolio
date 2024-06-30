@@ -45,23 +45,23 @@
                         <ul class="main-nav navbar-nav text-center">
 
                             <li class="nav-item">
-                                <a class="nav-link d-flex flex-column" href="index.html"><span class="icon-holder"><i
+                                <a class="nav-link d-flex flex-column" href="/"><span class="icon-holder"><i
                                             class="fa-solid fa-circle-user"></i></span><span
                                         class="nav-text">About</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex flex-column" href="projects.html"><span class="icon-holder"><i
+                                <a class="nav-link d-flex flex-column" href="/projects"><span class="icon-holder"><i
                                             class="fa-solid fa-briefcase"></i></span><span
                                         class="nav-text">Projects</span></a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link d-flex flex-column" href="resume.html"><span class="icon-holder"><i
+                                <a class="nav-link d-flex flex-column" href="/resume"><span class="icon-holder"><i
                                             class="fa-solid fa-file-lines"></i></span><span
                                         class="nav-text">Resume</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active d-flex flex-column" href="contact.html"><span
+                                <a class="nav-link active d-flex flex-column" href="/contact"><span
                                         class="icon-holder"><i class="fa-solid fa-comment-dots"></i></span><span
                                         class="nav-text">Contact</a>
                             </li>
@@ -101,21 +101,14 @@
 
                         </div><!--//mode-toggle-->
 
-                        <a class="btn btn-primary top-bar-cta" href="contact.html">Hire Me</a>
+                        <a class="btn btn-primary top-bar-cta" href="/contact">contact</a>
 
                         <ul class="social-list list-inline mx-auto d-none d-lg-block">
-                            <li class="list-inline-item me-0 me-md-1 me-lg-2"><a href="#"><i
-                                        class="fa-brands fa-twitter fa-fw"></i></a></li>
-                            <li class="list-inline-item me-0 me-md-1 me-lg-2"><a href="#"><i
+                            <li class="list-inline-item me-0 me-md-1 me-lg-2"><a href="https://www.linkedin.com/in/pinaki-358083262/" target="_"><i
+                            class="fa-brands fa-linkedin-in fa-fw"></i></a></li>
+                            <li class="list-inline-item me-0 me-md-1 me-lg-2"><a href="https://github.com/Pinaki19" target="_"><i
                                         class="fa-brands fa-github fa-fw"></i></a></li>
-
-                            <li class="list-inline-item me-0 me-md-1 me-lg-2"><a href="#"><i
-                                        class="fa-brands fa-linkedin-in fa-fw"></i></a></li>
-
-                            <li class="list-inline-item me-0 me-md-1 me-lg-2"><a href="#"><i
-                                        class="fa-brands fa-stack-overflow fa-fw"></i></a></li>
-                            <li class="list-inline-item me-0 me-md-1 me-lg-2"><a href="#"><i
-                                        class="fa-brands fa-medium fa-fw"></i></a></li>
+                            
                         </ul><!--//social-list-->
 
                     </div><!--//top-bar-inner-->
@@ -125,15 +118,12 @@
                 <section class="page-intro-section section has-profile-image mx-auto ">
 
                     <div class="profile-holder text-center">
-                        <img class="profile-pic rounded-circle" src="assets/images/profile.png" alt="image">
+                        <img class="profile-pic rounded-circle" src="profile.jpg" alt="image">
                     </div><!--//profile-holder-->
                     <div class="intro-holder">
                         <h2 class="intro-name text-center">Get In Touch</h2>
                         <div class="contact-intro text-md-center limit-max-width mx-auto">
-                            <p>Contact intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                placerat sodales massa vitae ornare. Quisque ac ipsum quam. </p>
-
-
+                            <p>Contact me for anything related to my projects, some role you think I might fit in, or if you wolud like to collaborate! </p>
                         </div>
 
                         <ul class="social-list list-inline mx-auto d-block d-lg-none py-3 text-center">
@@ -154,7 +144,7 @@
                     </div><!--//intro-holder-->
 
                     <div class="contact-form-wrapper pt-3">
-                        <form id="contact-form" class="contact-form p-md-4 px-lg-5">
+                        <form id="contact-form" class="contact-form p-md-4 px-lg-5" onsubmit="submitForm(event)">
                             <h4 class="text-center mb-4">Contact Form</h4>
 
                             <div class="row g-3">
@@ -191,11 +181,9 @@
     </div><!--//container-->
 
     <footer class="footer text-center py-4">
-        <small class="copyright">Template Copyright &copy; <a href="https://themes.3rdwavemedia.com/"
-                target="_blank">3rd Wave Media</a></small>
+        <span>Backend of this site is written in C. Check out in <a href="/projects">projects</a> sction</span>
     </footer>
 
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
     <div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
         <div class="panel-inner">
             <a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto"
@@ -227,5 +215,18 @@
 
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="style-switcher.js"></script>
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        var name = document.getElementById('cname').value;
+        var email = document.getElementById('cemail').value;
+        var message = document.getElementById('cmessage').value;
 
+        var mailtoLink = 'mailto:pinakibanerjee2001^gmail.com'
+            + '?subject=' + encodeURIComponent('Contact Form Submission')
+            + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nMessage: ' + message);
+
+        window.location.href = String(mailtoLink).replace('^', '@');
+    }
+</script>
 </body>

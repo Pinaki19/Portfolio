@@ -72,8 +72,11 @@ void set_content_type(const char* file_path,char* content_type){
 	printf("File name: %s\n",file_name);
 	int len=strlen(file_name);
 	char* extension=strtok(file_name,".");
-	if(strlen(extension)==len)
-		strcpy(ext,"html");
+	if(strlen(extension)==len){
+        strcpy(&file_name[len],".html");
+        strcpy(ext, "html");
+    }
+	
 	else{
 		while(extension){
 			strcpy(ext,extension);

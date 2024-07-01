@@ -38,14 +38,14 @@ bool exists(const char* haystack,const char* needle){
     return false;
 }
 
-int set_content_type(char* file_path,char* content_type){
+bool set_content_type(char* file_name,char* folder_name,char* content_type){
 	char ext[64]={0};
-	char file_path_temp[512]={0};
-	strcpy(file_path_temp,file_path);
+	char file_name_temp[512]={0};
+	strcpy(file_name_temp,file_name);
 	char file_name[256]={0};
 	
-	char* name=strtok(file_path_temp,"/");
-    if(!name) return 0;
+	char* name=strtok(file_name_temp,"/");
+    if(!name) return false;
 	while(name){
 		strcpy(file_name,name);
 		name=strtok(NULL,"/");
@@ -54,7 +54,7 @@ int set_content_type(char* file_path,char* content_type){
 	int len=strlen(file_name);
 	
 	if(!strstr(file_name,".")){
-        strcpy(&file_path[strlen(file_path)],".html");
+        strcpy(&file_name[strlen(file_name)],".html");
         strcpy(ext, "html");
     }
 	else{
@@ -66,6 +66,7 @@ int set_content_type(char* file_path,char* content_type){
 	}
     printf("Ext: %s\n", ext);
     lower(ext);
+    if(!set_folder_name(ext,folder_name)) return false;
     if (!image(ext))
         strcpy(content_type, "text/");
     else
@@ -78,12 +79,27 @@ int set_content_type(char* file_path,char* content_type){
 
 	strcpy(&content_type[strlen(content_type)],ext);
     printf("Content type: %s",content_type);
-    return 1;
+    return true;
 }
 
-int getpath(char * buffer,char* file_path,char *content_type){
-	bzero(file_path,sizeof(file_path));
+bool set_folder_name(const char* extension,char * folder_name){
+    bzero(folder_name,sizeof(folder_name));
+    if(equal(extension,"js")){
+        strcpy(folder_name,"/static/js/");
+    }else if(equal(extension,"html")){
+        strcpy(folder_name, "/static/html/");
+    }else if(equal(extension,"css")){
+        strcpy(folder_name, "/static/css/");
+    }else if(image(extension)){
+        strcpy(folder_name, "/assets/images/");
+    }else return false;
+    return true;
+}
+
+bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type){
+	bzero(file_name,sizeof(file_name));
 	bzero(content_type,sizeof(content_type));
+    bzero(folder_name,sizeof(folder_name));
 	char * headers=strtok(buffer,"{");
 	
 	char *data=strtok(NULL,"}");
@@ -92,8 +108,8 @@ int getpath(char * buffer,char* file_path,char *content_type){
 	char* req_type=strtok(headers,delim);
 	char *req_path=strtok(NULL,delim);
 	if(!headers || !req_type || !req_path || req_path[0]=='.'){
-		strcpy(file_path,"NONE");
-		return 0;
+		strcpy(file_name,"NONE");
+		return false;
 	}
 	if(strlen(req_path)>1 && req_path[strlen(req_path)-1]=='/')
 		req_path[strlen(req_path)-1]='\0';
@@ -104,22 +120,21 @@ int getpath(char * buffer,char* file_path,char *content_type){
 
         char *result = strstr(req_path, "error.css");
         if (result != NULL){
-            strcpy(file_path, "error.css");
+            strcpy(file_name, "error.css");
             strcpy(content_type,"text/css\n\n");
-            return 1;
+            return true;
         }
         if(strcmp(req_path,"/")==0){
-			strcpy(file_path,"index.html");
+			strcpy(file_name,"index.html");
 		}
 		else{
-			strcpy(file_path,&req_path[1]);
+			strcpy(file_name,&req_path[1]);
 		}
-		if(!set_content_type(file_path,content_type)) return 0;
-	
+		if(!set_content_type(file_name,content_type)) return 0;
 	}else{
 		printf("Data received: %s\n",data);
 	}
-    return 1;
+    return true;
 }
 int main(int argc, char **argv) {
     if (argc < 2) {
@@ -145,8 +160,9 @@ int main(int argc, char **argv) {
     listen(sockfd, 10);
     FILE* fs;
     socklen_t len = sizeof(client);
-    char buffer[READ_SIZE], file[1024];
-    char content_type[64];
+    char buffer[READ_SIZE], file_name[512],folder_name[512];
+    char full_path[1024];
+    char content_type[128];
     while (1) {
         bzero(buffer, sizeof(buffer));
         int newfd = accept(sockfd, (struct sockaddr*)&client, &len);
@@ -156,26 +172,26 @@ int main(int argc, char **argv) {
         }
         read(newfd, buffer, sizeof(buffer));
         if(strlen(buffer)==0) continue;
-        int result=getpath(buffer, file, content_type);
+        bool result=getpath(buffer,folder_name, file_name, content_type);
+        strcpy(full_path,folder_name);
+        strcat(full_path,file_name);
         if(!result && strcmp(content_type,"text/html/n/n")!=0) continue;
         printf("Data received: %s\n", buffer);
         bzero(buffer, sizeof(buffer));
-        fs = fopen(file, "r");
+        fs = fopen(full_path, "r");
         int readBytes = 0;
         if(result && fs){
             write(newfd, ok_headers, strlen(ok_headers));
             write(newfd, content_type, strlen(content_type));
             while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0)
-            {
                 write(newfd, buffer, readBytes);
-            }
+            
         }else{
             write(newfd, error_headers, strlen(error_headers));
             fs=fopen("error.html","r");
             while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0)
-            {
                 write(newfd, buffer, readBytes);
-            }
+            
         }
         fclose(fs);
         close(newfd);

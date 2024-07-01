@@ -197,8 +197,10 @@ int main(int argc, char **argv) {
             continue;
         }
         read(newfd, buffer, sizeof(buffer));
-        if(strlen(buffer)==0) continue;
+        if (!buffer)
+            continue;
         printf("Data received: %s\n", buffer);
+        
         bool result=getpath(buffer,folder_name, file_name, content_type);
         strcat(full_path,folder_name);
         strcat(full_path,file_name);

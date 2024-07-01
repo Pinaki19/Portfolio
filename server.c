@@ -79,6 +79,7 @@ int set_content_type(char* file_path,char* content_type){
     strcpy(&ext[strlen(ext)],"\n\n");
 	
 	strcpy(&content_type[strlen(content_type)],ext);
+    printf("Content type: %s",content_type);
     return 1;
 }
 

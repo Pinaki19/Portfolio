@@ -207,6 +207,7 @@ int main(int argc, char **argv) {
         printf("Full request file path: %s  folder: %s file:%s\n ",full_path,folder_name,file_name);
         if (!result && !strstr(content_type, "html")){
             write(newfd, error_headers, strlen(error_headers));
+            close(newfd);
             continue;
         }
         bzero(buffer, sizeof(buffer));

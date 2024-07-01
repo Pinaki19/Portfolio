@@ -196,15 +196,15 @@ int main(int argc, char **argv) {
             perror("accept fail");
             continue;
         }
-        read(newfd, buffer, sizeof(buffer));
-        if (!buffer)
+        int cnt=read(newfd, buffer, sizeof(buffer));
+        if (cnt==0)
             continue;
-        printf("Data received: %s\n", buffer);
+        printf("Data received: %s numbytes: %d\n", buffer,cnt);
         
         bool result=getpath(buffer,folder_name, file_name, content_type);
         strcat(full_path,folder_name);
         strcat(full_path,file_name);
-        printf("Full request file path: %s   %s %s\n ",full_path,folder_name,file_name);
+        printf("Full request file path: %s  folder: %s file:%s\n ",full_path,folder_name,file_name);
         if(!result && strcmp(content_type,"text/html/n/n")!=0) continue;
         
         bzero(buffer, sizeof(buffer));

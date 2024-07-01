@@ -42,23 +42,23 @@ bool set_content_type(char* file_name,char* folder_name,char* content_type){
 	char ext[64]={0};
 	char file_name_temp[512]={0};
 	strcpy(file_name_temp,file_name);
-	char file_name[256]={0};
+	char file_name_raw[256]={0};
 	
 	char* name=strtok(file_name_temp,"/");
     if(!name) return false;
 	while(name){
-		strcpy(file_name,name);
+		strcpy(file_name_raw,name);
 		name=strtok(NULL,"/");
 	}
-	printf("File name: %s\n",file_name);
-	int len=strlen(file_name);
+	printf("File name: %s\n",file_name_raw);
+	int len=strlen(file_name_raw);
 	
-	if(!strstr(file_name,".")){
-        strcpy(&file_name[strlen(file_name)],".html");
+	if(!strstr(file_name_raw,".")){
+        strcpy(&file_name_raw[strlen(file_name_raw)],".html");
         strcpy(ext, "html");
     }
 	else{
-        char *extension = strtok(file_name, ".");
+        char *extension = strtok(file_name_raw, ".");
         while(extension){
 			strcpy(ext,extension);
 			extension=strtok(NULL,".");
@@ -116,7 +116,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 	printf("\nRequest path: %s\n",req_path);
 	
 	if(strcmp(req_type,"GET")==0){
-        if(req_path[0]=='.') return 0;
+        if(req_path[0]=='.') return false;
 
         char *result = strstr(req_path, "error.css");
         if (result != NULL){
@@ -130,7 +130,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 		else{
 			strcpy(file_name,&req_path[1]);
 		}
-		if(!set_content_type(file_name,folder_name,content_type)) return 0;
+		if(!set_content_type(file_name,folder_name,content_type)) return false;
 	}else{
 		printf("Data received: %s\n",data);
 	}

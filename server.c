@@ -38,6 +38,30 @@ bool exists(const char* haystack,const char* needle){
     return false;
 }
 
+bool set_folder_name(const char *extension, char *folder_name)
+{
+    bzero(folder_name, sizeof(folder_name));
+    if (equal(extension, "js"))
+    {
+        strcpy(folder_name, "/static/js/");
+    }
+    else if (equal(extension, "html"))
+    {
+        strcpy(folder_name, "/static/html/");
+    }
+    else if (equal(extension, "css"))
+    {
+        strcpy(folder_name, "/static/css/");
+    }
+    else if (image(extension))
+    {
+        strcpy(folder_name, "/assets/images/");
+    }
+    else
+        return false;
+    return true;
+}
+
 bool set_content_type(char* file_name,char* folder_name,char* content_type){
 	char ext[64]={0};
 	char file_name_temp[512]={0};
@@ -82,19 +106,7 @@ bool set_content_type(char* file_name,char* folder_name,char* content_type){
     return true;
 }
 
-bool set_folder_name(const char* extension,char * folder_name){
-    bzero(folder_name,sizeof(folder_name));
-    if(equal(extension,"js")){
-        strcpy(folder_name,"/static/js/");
-    }else if(equal(extension,"html")){
-        strcpy(folder_name, "/static/html/");
-    }else if(equal(extension,"css")){
-        strcpy(folder_name, "/static/css/");
-    }else if(image(extension)){
-        strcpy(folder_name, "/assets/images/");
-    }else return false;
-    return true;
-}
+
 
 bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type){
 	bzero(file_name,sizeof(file_name));

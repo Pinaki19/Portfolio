@@ -140,9 +140,11 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
         if(strcmp(req_path,"/")==0){
 			strcpy(file_name,"index.html");
 		}
-		else{
+		else if(req_path[0]=='/'){
 			strcpy(file_name,&req_path[1]);
-		}
+		}else{
+            strcpy(file_name, req_path);
+        }
 		if(!set_content_type(file_name,folder_name,content_type)) return false;
 	}else{
 		printf("Data received: %s\n",data);

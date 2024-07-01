@@ -80,7 +80,7 @@ bool set_content_type(char* file_name,char* folder_name,char* content_type){
 	int len=strlen(file_name_raw);
 	
 	if(!strstr(file_name_raw,".")){
-        strcpy(&file_name_raw[strlen(file_name_raw)],".html");
+        strcat(file_name,".html");
         strcpy(ext, "html");
     }
 	else{
@@ -128,7 +128,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 		req_path[strlen(req_path)-1]='\0';
 	printf("\nRequest path: %s\n",req_path);
 	
-	if(strcmp(req_type,"GET")==0){
+	if(equal(req_type,"GET")){
         if(req_path[0]=='.') return false;
 
         char *result = strstr(req_path, "error.css");
@@ -138,14 +138,12 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
             strcpy(content_type,"text/css\n\n");
             return true;
         }
-        if(strcmp(req_path,"/")==0){
+        if(equal(req_path,"/")){
 			strcpy(file_name,"index.html");
 		}
-		else if(req_path[0]=='/'){
+		else 
 			strcpy(file_name,&req_path[1]);
-		}else{
-            strcpy(file_name, req_path);
-        }
+		
 		if(!set_content_type(file_name,folder_name,content_type)) return false;
 	}else{
 		printf("Data received: %s\n",data);
@@ -181,7 +179,7 @@ int main(int argc, char **argv) {
     res=bind(sockfd, (struct sockaddr*)&server, sizeof(server));
     if(res<0)
     	error("Bind fail!");
-    listen(sockfd, 10);
+    listen(sockfd, 50);
     FILE* fs;
     socklen_t len = sizeof(client);
     char buffer[READ_SIZE], file_name[512],folder_name[512];
@@ -191,6 +189,8 @@ int main(int argc, char **argv) {
         bzero(buffer, sizeof(buffer));
         bzero(full_path,sizeof(full_path));
         strcpy(full_path,cwd);
+        printf("waiting...");
+        fflush(stdout);
         int newfd = accept(sockfd, (struct sockaddr*)&client, &len);
         if (newfd < 0) {
             perror("accept fail");
@@ -205,15 +205,12 @@ int main(int argc, char **argv) {
         strcat(full_path,folder_name);
         strcat(full_path,file_name);
         printf("Full request file path: %s  folder: %s file:%s\n ",full_path,folder_name,file_name);
-        if(!result && strcmp(content_type,"text/html/n/n")!=0) continue;
-        
-        bzero(buffer, sizeof(buffer));
-        fs = fopen(full_path, "r");
-        if(!fs){
-            printf("NOT FOUND");
+        if (!result && !strstr(content_type, "html")){
+            write(newfd, error_headers, strlen(error_headers));
             continue;
         }
-        printf("Result: %d\n",result);
+        bzero(buffer, sizeof(buffer));
+        fs = fopen(full_path, "r");
         int readBytes = 0;
         if(result && fs){
             write(newfd, ok_headers, strlen(ok_headers));
@@ -223,7 +220,9 @@ int main(int argc, char **argv) {
             
         }else{
             write(newfd, error_headers, strlen(error_headers));
-            fs=fopen("./static/html/error.html","r");
+            strcpy(full_path,cwd);
+            strcat(full_path,"/static/html/error.html");
+            fs=fopen(full_path,"r");
             while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0)
                 write(newfd, buffer, readBytes);
             

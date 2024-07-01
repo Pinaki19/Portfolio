@@ -5,10 +5,12 @@
 #include <netinet/ip.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <unistd.h>
+#include <linux/limits.h>
 #define bool int
 #define true 1
 #define false 0
-#define READ_SIZE 256000
+#define READ_SIZE 51200
 #define error(msg) {perror(msg);printf("\n");exit(1);}
 
 const char* error_headers = "HTTP/1.1 404 Not Found\nContent-Type: text/html\n\n";
@@ -43,19 +45,19 @@ bool set_folder_name(const char *extension, char *folder_name)
     bzero(folder_name, sizeof(folder_name));
     if (equal(extension, "js"))
     {
-        strcpy(folder_name, "static/js/");
+        strcpy(folder_name, "/static/js/");
     }
     else if (equal(extension, "html"))
     {
-        strcpy(folder_name, "static/html/");
+        strcpy(folder_name, "/static/html/");
     }
     else if (equal(extension, "css"))
     {
-        strcpy(folder_name, "static/css/");
+        strcpy(folder_name, "/static/css/");
     }
     else if (image(extension))
     {
-        strcpy(folder_name, "assets/images/");
+        strcpy(folder_name, "/assets/images/");
     }
     else
         return false;
@@ -113,13 +115,12 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 	bzero(content_type,sizeof(content_type));
     bzero(folder_name,sizeof(folder_name));
 	char * headers=strtok(buffer,"{");
-	
+	if(!headers) return false;
 	char *data=strtok(NULL,"}");
-	printf("Headers: %s\n",headers);
 	char * delim=" ";
 	char* req_type=strtok(headers,delim);
 	char *req_path=strtok(NULL,delim);
-	if(!headers || !req_type || !req_path || req_path[0]=='.'){
+	if(!req_type || !req_path || req_path[0]=='.'){
 		strcpy(file_name,"NONE");
 		return false;
 	}
@@ -133,7 +134,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
         char *result = strstr(req_path, "error.css");
         if (result != NULL){
             strcpy(file_name, "error.css");
-            strcpy(folder_name,"static/css/");
+            strcpy(folder_name,"/static/css/");
             strcpy(content_type,"text/css\n\n");
             return true;
         }
@@ -152,18 +153,26 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
     return true;
 }
 int main(int argc, char **argv) {
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != NULL)
+        printf("Current working dir: %s\n", cwd);
+    else{
+        perror("getcwd() error");
+        return 1;
+    }
     if (argc < 2) {
         printf("Provide port number!\n");
         exit(1);
     }
-
-   
     struct sockaddr_in server, client;
     server.sin_family = AF_INET;
     server.sin_port = htons(atoi(argv[1]));
-    server.sin_addr.s_addr = INADDR_ANY;
+    if(argc==3)
+        server.sin_addr.s_addr = inet_addr(argv[2]);
+    else
+        server.sin_addr.s_addr = INADDR_ANY;
+    
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-
     int reuse = 1,res;
     res=setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(int));
     if(res<0)
@@ -180,6 +189,8 @@ int main(int argc, char **argv) {
     char content_type[128];
     while (1) {
         bzero(buffer, sizeof(buffer));
+        bzero(full_path,sizeof(full_path));
+        strcpy(full_path,cwd);
         int newfd = accept(sockfd, (struct sockaddr*)&client, &len);
         if (newfd < 0) {
             perror("accept fail");
@@ -187,13 +198,20 @@ int main(int argc, char **argv) {
         }
         read(newfd, buffer, sizeof(buffer));
         if(strlen(buffer)==0) continue;
-        bool result=getpath(buffer,folder_name, file_name, content_type);
-        strcpy(full_path,folder_name);
-        strcat(full_path,file_name);
-        if(!result && strcmp(content_type,"text/html/n/n")!=0) continue;
         printf("Data received: %s\n", buffer);
+        bool result=getpath(buffer,folder_name, file_name, content_type);
+        strcat(full_path,folder_name);
+        strcat(full_path,file_name);
+        printf("Full request file path: %s   %s %s\n ",full_path,folder_name,file_name);
+        if(!result && strcmp(content_type,"text/html/n/n")!=0) continue;
+        
         bzero(buffer, sizeof(buffer));
         fs = fopen(full_path, "r");
+        if(!fs){
+            printf("NOT FOUND");
+            continue;
+        }
+        printf("Result: %d\n",result);
         int readBytes = 0;
         if(result && fs){
             write(newfd, ok_headers, strlen(ok_headers));
@@ -203,7 +221,7 @@ int main(int argc, char **argv) {
             
         }else{
             write(newfd, error_headers, strlen(error_headers));
-            fs=fopen("error.html","r");
+            fs=fopen("./static/html/error.html","r");
             while ((readBytes = fread(buffer, sizeof(char), READ_SIZE, fs)) > 0)
                 write(newfd, buffer, readBytes);
             

@@ -128,7 +128,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 		req_path[strlen(req_path)-1]='\0';
 	printf("\nRequest path: %s\n",req_path);
 	
-	if(equal(req_type,"GET")){
+	if(equal(req_type,"GET") || equal(req_type,"OPTIONS")){
         if(req_path[0]=='.') return false;
 
         char *result = strstr(req_path, "error.css");
@@ -146,7 +146,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 		
 		if(!set_content_type(file_name,folder_name,content_type)) return false;
 	}else{
-		printf("Data received: %s\n",data);
+		printf("POST Data received: %s\n",data);
 	}
     return true;
 }

@@ -70,15 +70,14 @@ int set_content_type(char* file_path,char* content_type){
 			extension=strtok(NULL,".");
 		}
 	}
+    printf("Ext: %s\n", ext);
+    lower(ext);
+    if (!image(ext))
+        strcpy(content_type, "text/");
+    else
+        strcpy(content_type, "image/");
+    strcpy(&ext[strlen(ext)],"\n\n");
 	
-	strcpy(&ext[strlen(ext)],"\n\n");
-	
-	printf("Ext: %s\n",ext);
-	lower(ext);
-	if(!image(ext))
-		strcpy(content_type,"text/");
-	else
-		strcpy(content_type,"image/");
 	strcpy(&content_type[strlen(content_type)],ext);
     return 1;
 }

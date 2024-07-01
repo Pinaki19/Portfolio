@@ -130,7 +130,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 		else{
 			strcpy(file_name,&req_path[1]);
 		}
-		if(!set_content_type(file_name,content_type)) return 0;
+		if(!set_content_type(file_name,folder_name,content_type)) return 0;
 	}else{
 		printf("Data received: %s\n",data);
 	}

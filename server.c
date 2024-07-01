@@ -5,8 +5,9 @@
 #include <netinet/ip.h>
 #include <arpa/inet.h>
 #include <string.h>
-#include <stdbool.h>
-
+#define bool int
+#define true 1
+#define false 0
 
 #define error(msg) {perror(msg);printf("\n");exit(1);}
 
@@ -35,11 +36,12 @@ void write_to_temp_file(const char *content, const char *filename)
 }
 
 bool equal(const char* s1,const char* s2){
-	return strcmp(s1,s2)==0;
+	if(strcmp(s1,s2)==0) return true;
+    return false;
 }
 
 bool image(const char* ext){
-	if(equal(ext,"png")||equal(ext,"jpeg")||equal(ext,"jpg")||equal(ext,"ico")||equal(ext,"webp")||equal(ext,"avif")) return true;
+	if(equal(ext,"png")||equal(ext,"jpeg")||equal(ext,"jpg")||equal(ext,"ico")||equal(ext,"webp")||equal(ext,"avif")||equal(ext,"svg")) return true;
 	return false;
 }
 

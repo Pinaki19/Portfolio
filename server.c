@@ -8,13 +8,11 @@
 #define bool int
 #define true 1
 #define false 0
-
+#define READ_SIZE 256000
 #define error(msg) {perror(msg);printf("\n");exit(1);}
 
 const char* error_headers = "HTTP/1.1 404 Not Found\nContent-Type: text/html\n\n";
 const char *ok_headers = "HTTP/1.1 200 OK\nContent-Type: ";
-
-#define READ_SIZE 256000
 
 void lower(char* data){
 	for(int i=0;i<strlen(data);i++){
@@ -23,17 +21,6 @@ void lower(char* data){
 	}
 }
 
-void write_to_temp_file(const char *content, const char *filename)
-{
-    FILE *fp = fopen(filename, "w");
-    if (!fp)
-    {
-        perror("Failed to open temporary file");
-        exit(1);
-    }
-    fprintf(fp, "%s", content);
-    fclose(fp);
-}
 
 bool equal(const char* s1,const char* s2){
 	if(strcmp(s1,s2)==0) return true;
@@ -55,7 +42,7 @@ int set_content_type(char* file_path,char* content_type){
 	char ext[64]={0};
 	char file_path_temp[512]={0};
 	strcpy(file_path_temp,file_path);
-	char file_name[128]={0};
+	char file_name[256]={0};
 	
 	char* name=strtok(file_path_temp,"/");
     if(!name) return 0;
@@ -65,13 +52,14 @@ int set_content_type(char* file_path,char* content_type){
 	}
 	printf("File name: %s\n",file_name);
 	int len=strlen(file_name);
-	char* extension=strtok(file_name,".");
-	if(strlen(extension)==len){
+	
+	if(!strstr(file_name,".")){
         strcpy(&file_path[strlen(file_path)],".html");
         strcpy(ext, "html");
     }
 	else{
-		while(extension){
+        char *extension = strtok(file_name, ".");
+        while(extension){
 			strcpy(ext,extension);
 			extension=strtok(NULL,".");
 		}
@@ -168,9 +156,9 @@ int main(int argc, char **argv) {
         }
         read(newfd, buffer, sizeof(buffer));
         if(strlen(buffer)==0) continue;
-        printf("Data received: %s\n",buffer);
         int result=getpath(buffer, file, content_type);
         if(!result && strcmp(content_type,"text/html/n/n")!=0) continue;
+        printf("Data received: %s\n", buffer);
         bzero(buffer, sizeof(buffer));
         fs = fopen(file, "r");
         int readBytes = 0;

@@ -127,8 +127,8 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
 	if(strlen(req_path)>1 && req_path[strlen(req_path)-1]=='/')
 		req_path[strlen(req_path)-1]='\0';
 	printf("\nRequest path: %s\n",req_path);
-	
-	if(equal(req_type,"GET") || equal(req_type,"OPTIONS")){
+	printf("REQ TYPE: %s\n",req_type);
+	if(equal(req_type,"GET") || equal(req_type,"OPTIONS")||equal(req_type,"HEAD")){
         if(req_path[0]=='.') return false;
 
         char *result = strstr(req_path, "error.css");

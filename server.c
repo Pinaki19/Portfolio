@@ -45,6 +45,12 @@ bool image(const char* ext){
 	return false;
 }
 
+bool exists(const char* haystack,const char* needle){
+    if (strstr(haystack, needle))
+        return true;
+    return false;
+}
+
 int set_content_type(char* file_path,char* content_type){
 	char ext[64]={0};
 	char file_path_temp[512]={0};
@@ -76,8 +82,12 @@ int set_content_type(char* file_path,char* content_type){
         strcpy(content_type, "text/");
     else
         strcpy(content_type, "image/");
+
+    if(exists(ext,"svg"))
+        strcpy(ext,"svg+xml");
+
     strcpy(&ext[strlen(ext)],"\n\n");
-	
+
 	strcpy(&content_type[strlen(content_type)],ext);
     printf("Content type: %s",content_type);
     return 1;

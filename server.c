@@ -43,19 +43,19 @@ bool set_folder_name(const char *extension, char *folder_name)
     bzero(folder_name, sizeof(folder_name));
     if (equal(extension, "js"))
     {
-        strcpy(folder_name, "/static/js/");
+        strcpy(folder_name, "static/js/");
     }
     else if (equal(extension, "html"))
     {
-        strcpy(folder_name, "/static/html/");
+        strcpy(folder_name, "static/html/");
     }
     else if (equal(extension, "css"))
     {
-        strcpy(folder_name, "/static/css/");
+        strcpy(folder_name, "static/css/");
     }
     else if (image(extension))
     {
-        strcpy(folder_name, "/assets/images/");
+        strcpy(folder_name, "assets/images/");
     }
     else
         return false;
@@ -133,6 +133,7 @@ bool getpath(char * buffer,char* folder_name,char* file_name,char *content_type)
         char *result = strstr(req_path, "error.css");
         if (result != NULL){
             strcpy(file_name, "error.css");
+            strcpy(folder_name,"static/css/");
             strcpy(content_type,"text/css\n\n");
             return true;
         }

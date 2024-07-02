@@ -5,7 +5,6 @@
 #include <netinet/ip.h>
 #include <arpa/inet.h>
 #include <string.h>
-#include <unistd.h>
 #include <linux/limits.h>
 #define bool int
 #define true 1
@@ -199,12 +198,10 @@ int main(int argc, char **argv) {
         int cnt=read(newfd, buffer, sizeof(buffer));
         if (cnt==0)
             continue;
-        printf("Data received: %s numbytes: %d\n", buffer,cnt);
-        
         bool result=getpath(buffer,folder_name, file_name, content_type);
         strcat(full_path,folder_name);
         strcat(full_path,file_name);
-        printf("Full request file path: %s  folder: %s file:%s\n ",full_path,folder_name,file_name);
+        printf("Full request file path: %s\n",full_path);
         if (!result && !strstr(content_type, "html")){
             write(newfd, error_headers, strlen(error_headers));
             close(newfd);

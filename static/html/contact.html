@@ -144,30 +144,17 @@
                     </div><!--//intro-holder-->
 
                     <div class="contact-form-wrapper pt-3">
-                        <form id="contact-form" class="contact-form p-md-4 px-lg-5" onsubmit="submitForm(event)">
-                            <h4 class="text-center mb-4">Contact Form</h4>
-
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="sr-only" for="cname">Name</label>
-                                    <input type="text" class="form-control" id="cname" name="name" placeholder="Name"
-                                        minlength="2" required="">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="sr-only" for="cemail">Email</label>
-                                    <input type="email" class="form-control" id="cemail" name="email"
-                                        placeholder="Email" required="">
-                                </div>
-
-                                <div class="col-12">
-                                    <label class="sr-only" for="cmessage">Your message</label>
-                                    <textarea class="form-control" id="cmessage" name="message"
-                                        placeholder="Enter your message" rows="10" required=""></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn w-100 btn-secondary py-2">Submit</button>
-                                </div>
-                            </div><!--//form-row-->
+                        <h4 class="text-center mb-4">Contact Form</h4>
+                        
+                        <form id="contact-form" class="contact-form p-md-4 px-lg-5">
+                            <iframe id="JotFormIFrame-241836640866465" title="Contact Form" onload="window.parent.scrollTo(0,0)" onsubmit="window.location.reload()"
+                                allowtransparency="true" allow="geolocation; microphone; camera; fullscreen"
+                                src="https://form.jotform.com/241836640866465" frameborder="0"
+                                style="min-width:100%;max-width:100%;height:539px;border:none;" scrolling="no">
+                            </iframe>
+                            <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+                            <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-241836640866465']", "https://form.jotform.com/")</script>
+                            
                         </form>
                     </div><!--//contact-form-wrapper-->
 
@@ -215,18 +202,5 @@
 
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="style-switcher.js"></script>
-<script>
-    function submitForm(event) {
-        event.preventDefault();
-        var name = document.getElementById('cname').value;
-        var email = document.getElementById('cemail').value;
-        var message = document.getElementById('cmessage').value;
 
-        var mailtoLink = 'mailto:pinakibanerjee2001^gmail.com'
-            + '?subject=' + encodeURIComponent('Contact Form Submission')
-            + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nMessage: ' + message);
-
-        window.location.href = String(mailtoLink).replace('^', '@');
-    }
-</script>
 </body>

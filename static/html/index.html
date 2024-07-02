@@ -29,9 +29,38 @@
 
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="theme-1.css">
-
+    
 </head>
+<style>
+.icon-item {
+    position: relative;
+    display: inline-block;
+}
 
+.icon-item .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    margin-left: -60px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.icon-item:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
 
 <body>
 
@@ -39,7 +68,7 @@
 
         <div class="side-panel position-relative">
 
-            <nav class="navbar">
+            <nav class="navbar" >
                 <div aria-labelledby="offcanvasNavbarLabel" class="offcanvas offcanvas-start show d-flex"
                     id="offcanvasNavbar" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1">
                     <div class="offcanvas-body d-flex align-items-center ">
@@ -145,22 +174,40 @@
                             <div class="col-12 col-md-6 col-lg-4" style="border:1px solid rgb(242, 228, 151);">
                                 <div class="card" style="padding:4px;">
                                     <h5 class="card-title pt-1"><a>B.Tech</a></h5>
-                                    <div style="color:rgb(134, 185, 230);">
+                                    <div style="color:rgb(61, 143, 215);">
                                         <p>Computer Science and engineering</p>
-                                        
+                                        <p>
+                                            Techno Main Salt Lake, Kolkata
+                                            2021 - 2025<br>
+                                            Result: 9.40 out of 10.0 ( Till 5th semester )
+                                        </p>
                                     </div>
                                 </div><!--//card-->
                             </div><!--//col-->
                             <div class="col-12 col-md-6 col-lg-4" style="border:1px solid green;">
                                 <div class="card" style="padding:4px;">
                                     <h5 class="card-title pt-1"><a>Higher Secondary (12th)</a></h5>
-                                   
+                                    <div style="padding-top:5%;color:rgb(61, 143, 215);">
+                                    <p> Science ( PCMB )</p>
+
+                                    <P>
+                                        Burdwan CMS High School, Burdwan<br>
+                                        2017 - 2019 <br>
+                                        Result: 84.20%
+                                    </P>
+                                    </div>
                                 </div><!--//card-->
                             </div><!--//col-->
-                            <div class="col-12 col-md-6 col-lg-4" style="border:1px solid rgb(105, 148, 241);">
+                            <div class="col-12 col-md-6 col-lg-4" style="border:1px solid rgb(236, 170, 131);">
                                 <div class="card" style="padding:4px;">
                                     <h5 class="card-title pt-1"><a>Secondary (10th)</a></h5>
-                                    
+                                    <div style="padding-top:5%;color:rgb(61, 143, 215);">
+                                    <p>
+                                        Eral Anchal High School, Abhirampur <br>
+                                        2017<br>
+                                        Result: 93.14%
+                                    </p>
+                                    </div>
                                 </div><!--//card-->
                             </div><!--//col-->
                 
@@ -176,45 +223,56 @@
         
                     </div>
                     <div class="featured-project-list container">
-                        <div class="row justify-content-center gy-4">
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <h5 class="card-title"><a>Hex Game</a></h5>
-                                    <div class="card-body px-0 ">
+                        <div class="row justify-content-center gy-4" style="padding-left:5%;">
+                            
+                        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-center">
+                            <div class="card">
+                                <h5 class="card-title" style="padding-left:7%"><a>Hex Game</a></h5>
+                                <div class="card-body px-0">
+                                    <div class="d-flex justify-content-center">
                                         <img style="width:85%;height:85%;" src="Hex_board.svg" class="card-img-top" alt="Hex board image">
-                                        <div style="padding-top:9%;"><a class="card-link more-link" href="https://hexgame.onrender.com/" target="_blank">Check out <span
-                                                    class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
-                                        </div>
                                     </div>
-                                </div><!--//card-->
-                            </div><!--//col-->
+                                    <div style="padding-top:9%;" class="d-flex justify-content-center">
+                                        <a class="card-link more-link" href="https://hexgame.onrender.com/" target="_blank">Check out <span
+                                                class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
+                                    </div>
+                                </div>
+                            </div><!--//card-->
+                        </div><!--//col-->
+                        
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <h5 class="card-title" style="text-align:center;"><a>Toll Website</a></h5>
+                                <div class="d-flex justify-content-center">
+                                    <img style="width:75%;height:75%;" src="toll-gate.png" class="card-img-top" alt="Toll plaza image">
+                                </div>
+                                <div class="card-body px-0">
+                                    <div class="d-flex justify-content-center">
+                                        <a class="card-link more-link" href="https://toll-plaza.vercel.app/" target="_blank">Check out <span
+                                                class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
+                                    </div>
+                                </div>
+                            </div><!--//card-->
+                        </div><!--//col-->
+
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card">
-                                    <h5 class="card-title"><a>Toll Website</a></h5>
-                                    <img style="width:75%;height:75%;" src="toll-gate.png" class="card-img-top"
-                                        alt="Toll plaza image">
+                                    <h5 class="card-title" style="text-align:center;">
+                                        <a>Google form filling</a>
+                                    </h5>
+                                    <div class="d-flex justify-content-center">
+                                        <img style="width:63%;height:63%;" src="Forms.png" class="card-img-top mx-auto" alt="image">
+                                    </div>
                                     <div class="card-body px-0">
-
-                                        <div><a class="card-link more-link" href="https://toll-plaza.vercel.app/" target="_blank">Check out <span
-                                                    class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
+                                        <div class="d-flex justify-content-center">
+                                            <a class="card-link more-link" href="https://autofiller-83ad.onrender.com/" target="_blank">
+                                                Check out <span class="link-arrow"><i class="bi bi-arrow-right"></i></span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div><!--//card-->
                             </div><!--//col-->
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <h5 class="card-title"><a>Google form filling</a></h5>
-                                    <img style="width:63%;height:63%;" src="Forms.png" class="card-img-top"
-                                        alt="image">
-                                    <div class="card-body px-0">
- 
-                                        <div><a class="card-link more-link" href="https://autofiller-83ad.onrender.com/" target="_blank">Chcek out <span
-                                                    class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
-                                        </div>
 
-                                    </div>
-                                </div><!--//card-->
-                            </div><!--//col-->
 
                         </div><!--//row-->
                         <div class="section-cta text-center mt-3">
@@ -233,98 +291,112 @@
                 <section class="skills-section section mx-auto mb-0">
                     <h3 class="section-heading mb-4">Skills &amp; Experiences</h3>
                     <div class="section-intro mb-5 limit-max-width text-md-center">
-                        Section intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. You can
-                        replace or add more tech icons below to reflect your skillset.</a>
+                       Below are some programming languages I know well, frameworks & OS's I have used and industry relevant experiences I have.</a>
                     </div><!--//section-intro-->
-                    <div class="row tech-list justify-content-center align-items-center">
-
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/javascript.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/nodejs.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/typescript.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/react.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/angular.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/bootstrap5.svg" alt=""></div>
-
+                    <div class="row tech-list justify-content-center align-items-center" style="text-align:center;">
                         <div class="clearfix"></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/python.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/django-alt.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/solidity.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/golang.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/c++.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/php.svg" alt=""></div>
-
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/postgresql.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/redis.svg" alt=""></div>
-                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5"><img class="rounded"
-                                src="images/tech-icons/mongodb.svg" alt=""></div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="c.svg" alt="C icon">
+                            <div class="tooltiptext">C</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="cpp.svg" alt="">
+                            <div class="tooltiptext">C++</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="python.svg" alt="">
+                            <div class="tooltiptext">Python</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="java.svg" alt="" style="width:85%;height:85%;">
+                            <div class="tooltiptext">Java</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="javascript.svg" alt="">
+                            <div class="tooltiptext">JavaScript</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="sql.svg" alt="">
+                            <div class="tooltiptext">SQL</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="mongodb.svg" alt="">
+                            <div class="tooltiptext">MongoDB</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="html.svg" alt="" style="width:85%;height:85%;">
+                            <div class="tooltiptext">HTML</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="css.svg" alt="" style="width:85%;height:85%;">
+                            <div class="tooltiptext">CSS</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="bootstrap5.svg" alt="">
+                            <div class="tooltiptext">Bootstrap 5</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="fastapi.svg" alt="">
+                            <div class="tooltiptext">FastAPI</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="flask.svg" alt="" style="width:82%;height:82%;">
+                            <div class="tooltiptext">Flask</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="ubuntu.svg" alt="">
+                            <div class="tooltiptext">Ubuntu</div>
+                        </div>
+                        <div class="icon-item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5">
+                            <img class="rounded" src="windows.svg" alt="">
+                            <div class="tooltiptext">Windows</div>
+                        </div>
                     </div><!--//tech-list-->
-                    <div class="section-cta text-center mt-4">
-                        <a class="btn btn-secondary theme-btn-cta" href="/resume">View Resume <svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-                            </svg></a>
-                    </div><!--//section-cta-->
+                    <hr>
 
-                    <div class="skill-blocks py-5 row justify-content-center">
-                        <div class="item col-md-6 col-lg-4 text-md-center">
-                            <div class="item-icon-holder mx-md-auto"><i class="item-icon bi bi-terminal"></i></div>
-                            <h3 class="item-title mb-3">Web Development</h3>
-                            <div class="item-desc">
-                                Describe your expertise here. You can change the icon above to any of the <a
-                                    href="https://icons.getbootstrap.com/" targert="_blank">free Bootstrap icons</a>,
-                                consectetur adipiscing elit. Phasellus enim quam, gravida accumsan dignissim eu.
-                            </div><!--//item-desc-->
-                        </div><!--//item-->
-                        <div class="item col-md-6 col-lg-4 text-md-center">
-                            <div class="item-icon-holder  mx-md-auto"><i class="item-icon bi bi-database-check"></i>
+                
+                    <div class="project-item col-12 col-md-6 col-lg-12 mb-5">
+                        <div class="project-item-inner row">
+                            <div class="col-12 col-lg-5 col-xl-4">
+                                <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto" src="Google_AI_ML.jpg" style="width:230px;height:280px;"
+                                    alt="image">
                             </div>
-                            <h3 class="item-title mb-3">Database Infrastructure</h3>
-                            <div class="item-desc">
-                                Describe your expertise here. You can change the icon above to any of the free Bootstrap
-                                icons, consectetur adipiscing elit. Phasellus enim quam, gravida accumsan dignissim eu.
-                            </div><!--//item-desc-->
-                        </div><!--//item-->
-                        <div class="item col-md-6 col-lg-4 text-md-center">
-                            <div class="item-icon-holder  mx-md-auto"><i class="item-icon bi bi-infinity"></i></div>
-                            <h3 class="item-title mb-3">DevOps</h3>
-                            <div class="item-desc">
-                                Describe your expertise here. You can change the icon above to any of the free Bootstrap
-                                icons, consectetur adipiscing elit. Phasellus enim quam, gravida accumsan dignissim eu.
-                            </div><!--//item-desc-->
-                        </div><!--//item-->
-                        <div class="item col-md-6 col-lg-4 text-md-center">
-                            <div class="item-icon-holder  mx-md-auto"><i class="item-icon bi bi-apple"></i></div>
-                            <h3 class="item-title mb-3">iOS App <br>Development</h3>
-                            <div class="item-desc">
-                                Describe your expertise here. You can change the icon above to any of the free Bootstrap
-                                icons, consectetur adipiscing elit. Phasellus enim quam, gravida accumsan dignissim eu.
-                            </div><!--//item-desc-->
-                        </div><!--//item-->
-                        <div class="item col-md-6 col-lg-4 text-md-center">
-                            <div class="item-icon-holder  mx-md-auto"><i class="item-icon bi bi-android2"></i></div>
-                            <h3 class="item-title mb-3">Android App <br>Development</h3>
-                            <div class="item-desc">
-                                Describe your expertise here. You can change the icon above to any of the free Bootstrap
-                                icons, consectetur adipiscing elit. Phasellus enim quam, gravida accumsan dignissim eu.
-                            </div><!--//item-desc-->
-                        </div><!--//item-->
-                    </div><!--//skill-blocks-->
+                            <div class="col-12 col-lg-7 col-xl-8">
+                                <h3 class="title"><a >Google AI ML Internship</a></h3>
+                                <div class="intro mb-3">During the Google AI/ML Internship, participants engage in machine learning and artificial intelligence
+                                projects. Interns learn about different ML models, roles of optimizers, building models with TensorFlow and their real life applications. This experience equips 
+                                interns with valuable skills in AI/ML, preparing them for future roles in the tech industry.
+                            </div>
+                    
+                                <h5 class="subtitle">Remote</h5>
+
+                                <a class="more-link" target="_blank" href="https://drive.google.com/file/d/1uVvP9ByLkXGISAjVSviJVaYEU7nghFgu/view?usp=sharing">View Certificate <span class="link-arrow"><i
+                                            class="bi bi-arrow-right"></i></span></a>
+                            </div><!--//col-->
+                        </div><!--//project-item-inner-->
+                    </div><!--//project-item-->
+                    <div class="project-item col-12 col-md-6 col-lg-12 mb-5">
+                        <div class="project-item-inner row">
+                            <div class="col-12 col-lg-5 col-xl-4">
+                                <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto" src="SQL.jpg"
+                                    style="width:230px;height:280px;" alt="image">
+                            </div>
+                            <div class="col-12 col-lg-7 col-xl-8">
+                                <h3 class="title"><a>Celebal SQL Internship</a></h3>
+                                <div class="intro mb-3">The Celebal Technologies SQL Internship is a virtual program focused on developing expertise in SQL and database
+                                management. Interns work on real-world projects, managing and querying databases to extract meaningful insights and
+                                support data-driven decision-making. The internship includes training in SQL programming, database design, optimization,
+                                and performance tuning.
+                            </div>
+                    
+                                <h5 class="subtitle">Remote</h5>
+                    
+                                <a class="more-link" target="_blank"
+                                    href="https://drive.google.com/file/d/1URxREHE_88LOoCgYsqUEssXWFEtf9ric/view?usp=sharing">View
+                                    Certificate <span class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
+                            </div><!--//col-->
+                        </div><!--//project-item-inner-->
+                    </div><!--//project-item-->
                     <div class="section-cta text-center">
                         <a class="btn btn-secondary theme-btn-cta" href="/contact">Get In Touch <svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -383,7 +455,6 @@
 
 
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="style-switcher.js"></script>
-
+    <script src="style-switcher.js"></script>   
 
 </body>

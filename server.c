@@ -188,7 +188,6 @@ int main(int argc, char **argv) {
         bzero(buffer, sizeof(buffer));
         bzero(full_path,sizeof(full_path));
         strcpy(full_path,cwd);
-        printf("waiting...");
         fflush(stdout);
         int newfd = accept(sockfd, (struct sockaddr*)&client, &len);
         if (newfd < 0) {

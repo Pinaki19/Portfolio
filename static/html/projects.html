@@ -8,10 +8,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Profolio Bootstrap 5 Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    <link rel="shortcut icon" href="favicon.ico">
-
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <!-- Google Fonts -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +27,50 @@
     <link id="theme-style" rel="stylesheet" href="theme-1.css">
 
 </head>
+<style>
+    .row2 {
+        --bs-gutter-x: 1rem;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(-1*var(--bs-gutter-y));
+        margin-right: calc(-0.5*var(--bs-gutter-x));
+        margin-left: calc(-0.5*var(--bs-gutter-x));
+        height:3em;
+    }
+    .icon-item {
+        position: relative;
+        display: inline-block;
+        transform: scale(0.65);
+        top:-2em;
+    }
 
+    .icon-item .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        /* Position above the icon */
+        left: 50%;
+        margin-left: -60px;
+        /* Center the tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .icon-item:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
 
 <body>
 
@@ -122,17 +163,10 @@
                     <div class="intro-holder">
                         <h2 class="intro-name text-center">My Projects</h2>
                         <div class="profile-intro text-center limit-max-width mx-auto">
-                            <p class="mb-4">Intro about projects goes here. Need help with your project? Book a free
+                            <p class="mb-1">Intro about projects goes here. Need help with your project? Book a free
                                 session with me to discuss your specific project requirements and how I can help you.
                             </p>
-                            <div class="text-center mt-4">
-                                <a class="btn btn-secondary" href="/contact">Start A Conversation <svg
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                        class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-                                    </svg></a>
-                            </div><!--//section-cta-->
+                            
                         </div>
 
                     </div><!--//intro-holder-->
@@ -146,147 +180,236 @@
                             <div class="project-item-inner row">
                                 <div class="col-12 col-lg-5 col-xl-4">
                                     <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="projects/project-thumb-1.png" alt="image">
+                                        src="Hex_board.svg" style="transform:scale(0.92);" alt="image">
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
-                                    <h3 class="title"><a href="case-study.html">Trading App Lorem</a></h3>
+                                    <h3 class="title"><a href="case-study.html">Hex Game</a></h3>
                                     <div class="intro mb-3">Project summary goes here. Lorem ipsum dolor sit amet,
                                         consectetur adipiscing elit. In metus nunc, fringilla ut viverra ut, placerat
                                         sed nisl. Ut eu nisi ut arcu volutpat vehicula. </div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
-                                    <ul class="tech-stack list-inline">
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/javascript.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/react.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/bootstrap5.svg" alt=""></li>
-                                    </ul>
-
-                                    <a class="more-link" href="case-study.html">View Case Study <span
-                                            class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
+                                    <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                        
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="fastapi.svg" alt="Fastapi icon">
+                                            <div class="tooltiptext">FastAPI</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="javascript.svg" style="transform:scale(0.85)" alt="C icon">
+                                            <div class="tooltiptext">Javascript</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="pytorch.svg" style="transform:scale(0.9)" alt="Fastapi icon">
+                                            <div class="tooltiptext">PyTorch</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="html.svg" style="transform:scale(0.80)" alt="C icon">
+                                            <div class="tooltiptext">HTML</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="bootstrap5.svg" style="transform:scale(1.1)" alt="C icon">
+                                            <div class="tooltiptext">Bootstrap</div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="d-flex justify-content-between align-content-center">
+                                    <a class="more-link" target="_blank"  href="https://hexgame.onrender.com/">View website <span
+                                            class="link-arrow"><i class="bi bi-arrow-right"></i></span>
+                                    </a>
+                                    <a class="more-link" target="_blank" href="https://github.com/Pinaki19/HexGame">View on GitHub <span class="link-arrow"><i
+                                                        class="bi bi-arrow-right"></i></span>
+                                    </a>
+                                    </div>
                                 </div><!--//col-->
                             </div><!--//project-item-inner-->
                         </div><!--//project-item-->
 
-                        <div class="project-item col-12 col-md-6 col-lg-12 mb-5">
+                        <div class="project-item col-12 col-md-6 col-lg-12 mb-4">
                             <div class="project-item-inner row">
                                 <div class="col-12 col-lg-5 col-xl-4">
                                     <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="projects/project-thumb-11.png" alt="image">
+                                        src="toll-gate.png" style="transform:scale(0.95);position:relative;top:-1.25em;" alt="image">
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
-                                    <h3 class="title"><a href="case-study.html">Smart TV App</a></h3>
+                                    <h3 class="title"><a>Toll collection website</a></h3>
                                     <div class="intro mb-3">Project summary goes here. Lorem ipsum dolor sit amet, Ut eu
                                         nisi ut arcu volutpat vehicula. </div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
 
-                                    <ul class="tech-stack list-inline">
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/java.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/javascript.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/python.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/swift.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/kotlin.svg" alt=""></li>
-                                    </ul>
+                                    <div class="d-flex row2 mt-4 mb-3 tech-list justify-content-center align-items-center" style="text-align:center;">
+                                    
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="flask.svg" style="transform:scale(0.85)" alt="Fastapi icon">
+                                            <div class="tooltiptext">Flask</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="firebase.svg" style="transform:scale(0.85)" alt="Fastapi icon">
+                                            <div class="tooltiptext">Firebase</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="SQL.svg" alt="Fastapi icon">
+                                            <div class="tooltiptext">SQL</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="javascript.svg" style="transform:scale(0.85)" alt="C icon">
+                                            <div class="tooltiptext">Javascript</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="html.svg" style="transform:scale(0.80)" alt="C icon">
+                                            <div class="tooltiptext">HTML</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="bootstrap5.svg" style="transform:scale(1.1)" alt="C icon">
+                                            <div class="tooltiptext">Bootstrap</div>
+                                        </div>
+                                    
+                                    </div>
 
-                                    <a class="more-link" href="case-study.html">View Case Study <span
-                                            class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
+                                    <div class="d-flex justify-content-between align-content-center">
+                                        <a class="more-link" target="_blank" href="https://toll-plaaza.vercel.app/">View website <span class="link-arrow"><i
+                                                    class="bi bi-arrow-right"></i></span>
+                                        </a>
+                                        <a class="more-link" target="_blank" href="https://github.com/Pinaki19/Toll-Refactored">View on GitHub <span class="link-arrow"><i
+                                                    class="bi bi-arrow-right"></i></span>
+                                        </a>
+                                    </div>
                                 </div><!--//col-->
                             </div><!--//project-item-inner-->
                         </div><!--//project-item-->
-                        <div class="project-item col-12 col-md-6 col-lg-12 mb-5">
+                        <div class="project-item col-12 col-md-6 col-lg-12 mb-2">
                             <div class="project-item-inner row">
                                 <div class="col-12 col-lg-5 col-xl-4">
                                     <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="projects/project-thumb-5.png" alt="image">
+                                        src="Forms.png" style="transform:scale(0.8);position:relative;top:-2.5em;" alt="image">
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
-                                    <h3 class="title"><a href="case-study.html">Web App Ipsum</a></h3>
+                                    <h3 class="title"><a href="case-study.html">Automated form filler</a></h3>
                                     <div class="intro mb-3">Project summary goes here. For projects which don't have
                                         case studies you can link them to their GitHub pages instead.</div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
-                                    <ul class="tech-stack list-inline">
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/nodejs.svg" alt=""></li>
-                                        <li class="list-inline-item"><img src="tech-icons/html5.svg"
-                                                alt=""></li>
-                                        <li class="list-inline-item"><img src="tech-icons/css3.svg"
-                                                alt=""></li>
-                                    </ul>
+                                    <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                    <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                        <img class="rounded" src="node-js.svg" alt="Fastapi icon">
+                                        <div class="tooltiptext">Node JS</div>
+                                    </div>
+                                    <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                        <img class="rounded" src="html.svg" style="transform:scale(0.80)" alt="C icon">
+                                        <div class="tooltiptext">HTML</div>
+                                    </div>
+                                    <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                        <img class="rounded" src="bootstrap5.svg" style="transform:scale(1.1)" alt="C icon">
+                                        <div class="tooltiptext">Bootstrap</div>
+                                    </div>
+                                    
+                                    </div>
 
-                                    <a class="more-link" href="#">View On Github<span class="link-arrow"><i
-                                                class="bi bi-arrow-right"></i></span></a>
+                                    <div class="d-flex justify-content-between align-content-center">
+                                        <a class="more-link" target="_blank" href="https://autofiller-83ad.onrender.com/">View website <span class="link-arrow"><i
+                                                    class="bi bi-arrow-right"></i></span>
+                                        </a>
+                                        <a class="more-link" target="_blank" href="https://github.com/Pinaki19/AutoFiller">View on GitHub <span class="link-arrow"><i
+                                                    class="bi bi-arrow-right"></i></span>
+                                        </a>
+                                    </div>
                                 </div><!--//col-->
                             </div><!--//project-item-inner-->
                         </div><!--//project-item-->
 
-                        <div class="project-item col-12 col-md-6 col-lg-12 mb-5">
+                        <div class="project-item col-12 col-md-6 col-lg-12 mb-2">
                             <div class="project-item-inner row">
                                 <div class="col-12 col-lg-5 col-xl-4">
                                     <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="projects/project-thumb-6.png" alt="image">
+                                        src="resume.png" style="transform:scale(0.75);position:relative;top:-1.95em;" alt="image">
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
-                                    <h3 class="title"><a href="case-study.html">Chrome Extension Maecenas</a></h3>
+                                    <h3 class="title"><a href="case-study.html">Portfolio Website</a></h3>
                                     <div class="intro mb-3">Project summary goes here. Sed vel vestibulum dolor. Nam
                                         nisl ipsum, tristique ut aliquam vel, dignissim eget dui. Praesent quis
                                         imperdiet ex.</div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
-                                    <ul class="tech-stack list-inline">
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/typescript.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/solidity.svg" alt=""></li>
-                                    </ul>
+                                    <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="c.svg" alt="Fastapi icon">
+                                            <div class="tooltiptext">C</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="javascript.svg" style="transform:scale(0.85)" alt="C icon">
+                                            <div class="tooltiptext">Javascript</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="html.svg" style="transform:scale(0.80)" alt="C icon">
+                                            <div class="tooltiptext">HTML</div>
+                                        </div>
+                                        <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                            <img class="rounded" src="bootstrap5.svg" style="transform:scale(1.1)" alt="C icon">
+                                            <div class="tooltiptext">Bootstrap</div>
+                                        </div>
+                                    </div>
 
-                                    <a class="more-link" href="case-study.html">View Case Study <span
-                                            class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
+                                    <div class="d-flex justify-content-between align-content-center">
+                                        <a class="more-link" target="_blank" href="https://pinaki.onrender.com/">View website <span class="link-arrow"><i
+                                                    class="bi bi-arrow-right"></i></span>
+                                        </a>
+                                        <a class="more-link" target="_blank" href="https://github.com/Pinaki19/Portfolio">View on GitHub <span class="link-arrow"><i
+                                                    class="bi bi-arrow-right"></i></span>
+                                        </a>
+                                    </div>
                                 </div><!--//col-->
                             </div><!--//project-item-inner-->
                         </div><!--//project-item-->
 
 
-                        <div class="project-item col-12 col-md-6 col-lg-12 mb-5">
-                            <div class="project-item-inner row">
-                                <div class="col-12 col-lg-5 col-xl-4">
-                                    <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="projects/project-thumb-4.png" alt="image">
+                    <div class="project-item col-12 col-md-6 col-lg-12 mb-2">
+                        <div class="project-item-inner row">
+                            <div class="col-12 col-lg-5 col-xl-4">
+                                <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto" src="Forms.png"
+                                    style="transform:scale(0.8);position:relative;top:-2.5em;" alt="image">
+                            </div>
+                            <div class="col-12 col-lg-7 col-xl-8">
+                                <h3 class="title"><a href="case-study.html">Form filler CLI tool</a></h3>
+                                <div class="intro mb-3">Project summary goes here. For projects which don't have
+                                    case studies you can link them to their GitHub pages instead.</div>
+                    
+                                <h4 class="subtitle">Tech Stack:</h4>
+                                <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                    <img class="rounded" src="flask.svg" style="transform:scale(0.85)" alt="Fastapi icon">
+                                    <div class="tooltiptext">Flask</div>
                                 </div>
-                                <div class="col-12 col-lg-7 col-xl-8">
-                                    <h3 class="title"><a href="case-study.html">Data Analytics App</a></h3>
-                                    <div class="intro mb-3">Project summary goes here. Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. In metus nunc, fringilla ut viverra ut, placerat
-                                        sed nisl. </div>
+                                <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                    <img class="rounded" src="selenium.svg" alt="Fastapi icon">
+                                    <div class="tooltiptext">Selenium</div>
+                                </div>
+                                <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                    <img class="rounded" src="javascript.svg" style="transform:scale(0.85)" alt="C icon">
+                                    <div class="tooltiptext">Javascript</div>
+                                </div>
+                                <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                    <img class="rounded" src="html.svg" style="transform:scale(0.80)" alt="C icon">
+                                    <div class="tooltiptext">HTML</div>
+                                </div>
+                                <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
+                                    <img class="rounded" src="bootstrap5.svg" style="transform:scale(1.1)" alt="C icon">
+                                    <div class="tooltiptext">Bootstrap</div>
+                                </div>
+                                
+                                </div>
+                                <div class="d-flex justify-content-between align-content-center">
+                                    <a class="more-link" target="_blank" href="https://github.com/Pinaki19/Response-Bot">View on GitHub <span class="link-arrow"><i
+                                                class="bi bi-arrow-right"></i></span>
+                                    </a>
+                                </div>
+                            </div><!--//col-->
+                        </div><!--//project-item-inner-->
+                    </div><!--//project-item-->
 
-                                    <h4 class="subtitle">Tech Stack:</h4>
-                                    <ul class="tech-stack list-inline">
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/react.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/vue.svg" alt=""></li>
-                                        <li class="list-inline-item"><img class="rounded"
-                                                src="tech-icons/html5.svg" alt=""></li>
-                                    </ul>
-
-                                    <a class="more-link" href="case-study.html">View Case Study <span
-                                            class="link-arrow"><i class="bi bi-arrow-right"></i></span></a>
-                                </div><!--//col-->
-                            </div><!--//project-item-inner-->
-                        </div><!--//project-item-->
                     </div><!--//row-->
 
-                    <div class="section-cta text-center d-grid col-6 mx-auto">
-                        <a class="btn btn-secondary">Load More <span class="d-none d-lg-inline">projects</span></a>
-                    </div>
+                    
 
                 </section><!--//section-->
 

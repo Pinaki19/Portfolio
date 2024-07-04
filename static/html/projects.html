@@ -28,20 +28,11 @@
 
 </head>
 <style>
-    .row2 {
-        --bs-gutter-x: 1rem;
-        --bs-gutter-y: 0;
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: calc(-1*var(--bs-gutter-y));
-        margin-right: calc(-0.5*var(--bs-gutter-x));
-        margin-left: calc(-0.5*var(--bs-gutter-x));
-        height:3em;
-    }
+   
     .icon-item {
         position: relative;
         display: inline-block;
-        transform: scale(0.65);
+        transform: scale(0.8);
         top:-2em;
     }
 
@@ -163,8 +154,8 @@
                     <div class="intro-holder">
                         <h2 class="intro-name text-center">My Projects</h2>
                         <div class="profile-intro text-center limit-max-width mx-auto">
-                            <p class="mb-1">Intro about projects goes here. Need help with your project? Book a free
-                                session with me to discuss your specific project requirements and how I can help you.
+                            <p class="mb-1">
+                                Below are some of my notable projects and the tech stack used to build them
                             </p>
                             
                         </div>
@@ -184,12 +175,12 @@
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
                                     <h3 class="title"><a href="case-study.html">Hex Game</a></h3>
-                                    <div class="intro mb-3">Project summary goes here. Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. In metus nunc, fringilla ut viverra ut, placerat
-                                        sed nisl. Ut eu nisi ut arcu volutpat vehicula. </div>
+                                    <div class="intro mb-3">This project is a web-based platform for playing the classic Hex board game. Users can play against each other or an AI
+                                    opponent. The website features an interactive user interface, real-time updates. It is
+                                    designed to provide a seamless and engaging experience for both casual and competitive players.</div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
-                                    <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                    <div class="d-flex row tech-list justify-content-center align-items-center mt-4 mb-0" style="text-align:center;">
                                         
                                         <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
                                             <img class="rounded" src="fastapi.svg" alt="Fastapi icon">
@@ -213,7 +204,7 @@
                                         </div>
                                         
                                     </div>
-                                    <div class="d-flex justify-content-between align-content-center">
+                                    <div class="d-flex justify-content-between align-content-center" style="position:relative;top:-1em;">
                                     <a class="more-link" target="_blank"  href="https://hexgame.onrender.com/">View website <span
                                             class="link-arrow"><i class="bi bi-arrow-right"></i></span>
                                     </a>
@@ -229,16 +220,18 @@
                             <div class="project-item-inner row">
                                 <div class="col-12 col-lg-5 col-xl-4">
                                     <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="toll-gate.png" style="transform:scale(0.95);position:relative;top:-1.25em;" alt="image">
+                                        src="toll-gate.png" style="transform:scale(0.9);position:relative;top:-1.25em;" alt="image">
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
                                     <h3 class="title"><a>Toll collection website</a></h3>
-                                    <div class="intro mb-3">Project summary goes here. Lorem ipsum dolor sit amet, Ut eu
-                                        nisi ut arcu volutpat vehicula. </div>
+                                    <div class="intro mb-3">This project is an online toll collection platform. It allows user account management,
+                                    wallet management, and paying tolls electronically. Admins can manage the system managing toll rates and dicounts. Super admins can manage the users and admins.
+                                    The system aims to streamline toll
+                                    collection and reduce congestion at toll booths.</div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
 
-                                    <div class="d-flex row2 mt-4 mb-3 tech-list justify-content-center align-items-center" style="text-align:center;">
+                                    <div class="d-flex row mt-4 mb-0 tech-list justify-content-center align-items-center" style="text-align:center;">
                                     
                                         <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
                                             <img class="rounded" src="flask.svg" style="transform:scale(0.85)" alt="Fastapi icon">
@@ -249,7 +242,7 @@
                                             <div class="tooltiptext">Firebase</div>
                                         </div>
                                         <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
-                                            <img class="rounded" src="SQL.svg" alt="Fastapi icon">
+                                            <img class="rounded" src="sql.svg" alt="Fastapi icon">
                                             <div class="tooltiptext">SQL</div>
                                         </div>
                                         <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
@@ -267,7 +260,7 @@
                                     
                                     </div>
 
-                                    <div class="d-flex justify-content-between align-content-center">
+                                    <div class="d-flex justify-content-between align-content-center" style="position:relative;top:-1em;">
                                         <a class="more-link" target="_blank" href="https://toll-plaaza.vercel.app/">View website <span class="link-arrow"><i
                                                     class="bi bi-arrow-right"></i></span>
                                         </a>
@@ -282,15 +275,16 @@
                             <div class="project-item-inner row">
                                 <div class="col-12 col-lg-5 col-xl-4">
                                     <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="Forms.png" style="transform:scale(0.8);position:relative;top:-2.5em;" alt="image">
+                                        src="Forms.png" style="transform:scale(0.7);position:relative;top:-2.5em;" alt="image">
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
                                     <h3 class="title"><a href="case-study.html">Automated form filler</a></h3>
-                                    <div class="intro mb-3">Project summary goes here. For projects which don't have
-                                        case studies you can link them to their GitHub pages instead.</div>
+                                    <div class="intro mb-3">This service automates the process of filling out Google Forms. Users can input the required data into the system, which
+                                    then automatically fills out and submits the forms on their behalf. This service is particularly useful for repetitive
+                                    form submissions and can handle multiple forms and submissions efficiently, saving users time and effort.</div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
-                                    <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                    <div class="d-flex row tech-list justify-content-center align-items-center mt-4 mb-0" style="text-align:center;">
                                     <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
                                         <img class="rounded" src="node-js.svg" alt="Fastapi icon">
                                         <div class="tooltiptext">Node JS</div>
@@ -306,7 +300,7 @@
                                     
                                     </div>
 
-                                    <div class="d-flex justify-content-between align-content-center">
+                                    <div class="d-flex justify-content-between align-content-center" style="position:relative;top:-1.5em;">
                                         <a class="more-link" target="_blank" href="https://autofiller-83ad.onrender.com/">View website <span class="link-arrow"><i
                                                     class="bi bi-arrow-right"></i></span>
                                         </a>
@@ -322,16 +316,17 @@
                             <div class="project-item-inner row">
                                 <div class="col-12 col-lg-5 col-xl-4">
                                     <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto"
-                                        src="resume.png" style="transform:scale(0.75);position:relative;top:-1.95em;" alt="image">
+                                        src="resume.png" style="transform:scale(0.7);position:relative;top:-1.95em;" alt="image">
                                 </div>
                                 <div class="col-12 col-lg-7 col-xl-8">
                                     <h3 class="title"><a href="case-study.html">Portfolio Website</a></h3>
-                                    <div class="intro mb-3">Project summary goes here. Sed vel vestibulum dolor. Nam
-                                        nisl ipsum, tristique ut aliquam vel, dignissim eget dui. Praesent quis
-                                        imperdiet ex.</div>
+                                    <div class="intro mb-3">This project is a personal portfolio website built with a C backend that utilizes multithreading for improved
+                                    performance. The website showcases projects, skills, and experiences. It features smooth navigation between
+                                    pages and efficient handling of multiple client requests simultaneously, thanks to its multi-threaded server
+                                    architecture. The design focuses on providing a fast and responsive user experience.</div>
 
                                     <h4 class="subtitle">Tech Stack:</h4>
-                                    <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                    <div class="d-flex row tech-list justify-content-center align-items-center mt-4 mb-0" style="text-align:center;">
                                         <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
                                             <img class="rounded" src="c.svg" alt="Fastapi icon">
                                             <div class="tooltiptext">C</div>
@@ -350,8 +345,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-between align-content-center">
-                                        <a class="more-link" target="_blank" href="https://pinaki.onrender.com/">View website <span class="link-arrow"><i
+                                    <div class="d-flex justify-content-between align-content-center" style="position:relative;top:-1.5em;">
+                                        <a class="more-link" target="_blank" href="https://pinaki-portfolio.onrender.com">View website <span class="link-arrow"><i
                                                     class="bi bi-arrow-right"></i></span>
                                         </a>
                                         <a class="more-link" target="_blank" href="https://github.com/Pinaki19/Portfolio">View on GitHub <span class="link-arrow"><i
@@ -367,15 +362,18 @@
                         <div class="project-item-inner row">
                             <div class="col-12 col-lg-5 col-xl-4">
                                 <img class="project-thumb rounded-2 mb-3 mb-lg-0 rounded mx-auto" src="Forms.png"
-                                    style="transform:scale(0.8);position:relative;top:-2.5em;" alt="image">
+                                    style="transform:scale(0.7);position:relative;top:-2.5em;" alt="image">
                             </div>
                             <div class="col-12 col-lg-7 col-xl-8">
                                 <h3 class="title"><a href="case-study.html">Form filler CLI tool</a></h3>
-                                <div class="intro mb-3">Project summary goes here. For projects which don't have
-                                    case studies you can link them to their GitHub pages instead.</div>
+                                <div class="intro mb-3">This tool is a command-line application for automating the submission of Google Forms. This is CLI version of the aforementioned web service.
+                                     Users can configure the tool with
+                                the necessary form data and use it to submit forms directly from the command line. It supports batch processing, making
+                                it ideal for users who need to submit large volumes of forms quickly and efficiently. The tool is designed for ease of
+                                use and integration into automated workflows.</div>
                     
                                 <h4 class="subtitle">Tech Stack:</h4>
-                                <div class="d-flex row2 tech-list justify-content-center align-items-center mt-3 mb-2" style="text-align:center;">
+                                <div class="d-flex row tech-list justify-content-center align-items-center mt-4 mb-0" style="text-align:center;">
                                 <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
                                     <img class="rounded" src="flask.svg" style="transform:scale(0.85)" alt="Fastapi icon">
                                     <div class="tooltiptext">Flask</div>
@@ -388,17 +386,9 @@
                                     <img class="rounded" src="javascript.svg" style="transform:scale(0.85)" alt="C icon">
                                     <div class="tooltiptext">Javascript</div>
                                 </div>
-                                <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
-                                    <img class="rounded" src="html.svg" style="transform:scale(0.80)" alt="C icon">
-                                    <div class="tooltiptext">HTML</div>
+                               
                                 </div>
-                                <div class="icon-item col-sm-2 col-md-2 col-md-2 mb-1 mb-lg-2">
-                                    <img class="rounded" src="bootstrap5.svg" style="transform:scale(1.1)" alt="C icon">
-                                    <div class="tooltiptext">Bootstrap</div>
-                                </div>
-                                
-                                </div>
-                                <div class="d-flex justify-content-between align-content-center">
+                                <div class="d-flex justify-content-between align-content-center" style="position:relative;top:-1.5em;"> 
                                     <a class="more-link" target="_blank" href="https://github.com/Pinaki19/Response-Bot">View on GitHub <span class="link-arrow"><i
                                                 class="bi bi-arrow-right"></i></span>
                                     </a>
@@ -417,9 +407,9 @@
 
                     <h3 class="section-heading text-start text-md-center text-highlight"> Need Help With Your Project?
                     </h3>
-                    <div class="intro text-md-center">Lead generation intro goes here lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Suspendisse placerat egestas dui, quis ullamcorper massa
-                        pellentesque quis. </div>
+                    <div class="intro text-md-center">
+                    Want to know in detail about some projects? or have some project ideas that you would like me to collaborate on?
+                    </div>
                     <div class="text-center mt-4">
                         <a class="btn btn-secondary" href="/contact">Get In Touch <svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"

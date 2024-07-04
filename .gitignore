@@ -1,2 +1,2 @@
-*.crt
-*.key
+server
+temp*

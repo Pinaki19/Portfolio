@@ -92,6 +92,16 @@ bool check_etag(const char *etag, const char *buffer, char *client_etag)
             return true;
         }
     }
+    else if (strstr(buffer, "ETag:"))
+    {
+
+        sscanf(etag_header, "ETag: %s", client_etag);
+        // Compare ETags
+        if (strlen(client_etag) > 0 && strcmp(etag, client_etag) == 0)
+        {
+            return true;
+        }
+    }
     return false;
 }
 
@@ -323,7 +333,8 @@ void *handle_client(void *arg)
         {
             char content[1024] = {0};
             fs = fopen(full_path, "r");
-            fread(content, sizeof(content), 1024, fs);
+            printf("Full path: %s\n",full_path);
+            fread(content, 1, 1024, fs);
             set_up_json(content, buffer);
             write(newfd, buffer, strlen(buffer));
             close(newfd);
